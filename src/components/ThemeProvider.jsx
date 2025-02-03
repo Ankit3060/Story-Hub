@@ -1,10 +1,15 @@
-import { createContext, useContext } from "react";
-import { useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const ThemeContext = createContext();
 
+export function useTheme() {
+  return useContext(ThemeContext);
+}
+
 export default function ThemeProvider({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem("darkMode") === "true"
+  );
 
   useEffect(() => {
     if (isDarkMode) {
@@ -12,20 +17,14 @@ export default function ThemeProvider({ children }) {
     } else {
       document.documentElement.classList.remove("dark");
     }
+    localStorage.setItem("darkMode", isDarkMode);
   }, [isDarkMode]);
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
       <div className={`transition-colors duration-300 ${isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-800"}`}>
-        <button
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          className="fixed bottom-4 right-4 p-2 rounded-full bg-orange-500 text-white hover:bg-orange-600 focus:outline-none dark:bg-orange-400 dark:hover:bg-orange-500 cursor-pointer"
-        >
-          {isDarkMode ? "Light" : "Dark"} Mode
-        </button>
         {children}
       </div>
     </ThemeContext.Provider>
   );
 }
-

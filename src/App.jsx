@@ -5,7 +5,7 @@ import Magnifier from "./components/Magnifier.jsx";
 import ThemeProvider from "./components/ThemeProvider.jsx";
 import "./index.css";
 import "./App.css";
-
+import AccessibilityMenu from "./components/AccessibilityMenu.jsx";
 
 
 const stories = [
@@ -61,9 +61,8 @@ export default function StoryReadingWebsite() {
   const [isAccessibilityEnabled, setIsAccessibilityEnabled] = useState(false);
   const [hoveredText, setHoveredText] = useState("");
 
-  const handleTextToSpeech = (text) => {
-    const speech = new SpeechSynthesisUtterance(text);
-    window.speechSynthesis.speak(speech);
+  const handleTextToSpeech = (text, storyId) => {
+    console.log("Text to Speech triggered for story", storyId);
   };
 
   const handleHover = (text) => {
@@ -86,6 +85,7 @@ export default function StoryReadingWebsite() {
           />
           {isAccessibilityEnabled && hoveredText && <Magnifier hoveredText={hoveredText} />}
         </main>
+        <AccessibilityMenu setIsAccessibilityEnabled={setIsAccessibilityEnabled} />
       </div>
     </ThemeProvider>
   );
