@@ -49,7 +49,7 @@ export default function About() {
 
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center">
             <img
-              src="https://avatars.githubusercontent.com/u/121934648?v=4  "
+              src="https://www.shutterstock.com/shutterstock/photos/535853263/display_1500/stock-vector-profile-photo-vector-placeholder-pic-male-person-default-profile-gray-photo-picture-avatar-535853263.jpg"
               alt="yash image"
               className="w-32 h-32 mx-auto rounded-full mb-4"
             />
@@ -71,7 +71,7 @@ export default function About() {
 
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center">
             <img
-              src="https://avatars.githubusercontent.com/u/121934648?v=4"
+              src="https://www.shutterstock.com/shutterstock/photos/535853263/display_1500/stock-vector-profile-photo-vector-placeholder-pic-male-person-default-profile-gray-photo-picture-avatar-535853263.jpg"
               alt="Dhanush image"
               className="w-32 h-32 mx-auto rounded-full mb-4"
             />
@@ -93,12 +93,12 @@ export default function About() {
 
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center">
             <img
-              src="https://avatars.githubusercontent.com/u/121934648?v=4"
-              alt="Emily Johnson"
+              src="https://www.shutterstock.com/shutterstock/photos/535853263/display_1500/stock-vector-profile-photo-vector-placeholder-pic-male-person-default-profile-gray-photo-picture-avatar-535853263.jpg"
+              alt="Arnav image"
               className="w-32 h-32 mx-auto rounded-full mb-4"
             />
             <h3 className="text-xl font-semibold text-orange-500 dark:text-orange-400 mb-2">
-              Ankit Kumar
+              Arnav
             </h3>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               Ankit is a project manager who ensures everything runs smoothly at StoryHub. She loves organizing tasks and bringing ideas to life.
