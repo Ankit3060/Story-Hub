@@ -8,10 +8,13 @@ export default function AccessibilityMenu({ setIsAccessibilityEnabled }) {
   const [isMagnifierEnabled, setIsMagnifierEnabled] = useState(false);
   const [isHighContrastEnabled, setIsHighContrastEnabled] = useState(false);
 
-  // Handle high contrast mode without affecting layout positioning
   const toggleHighContrast = () => {
     setIsHighContrastEnabled(!isHighContrastEnabled);
     document.documentElement.classList.toggle("high-contrast", !isHighContrastEnabled);
+  };
+
+  const handleMagnifierToggle = () => {
+    setIsAccessibilityEnabled(!isMagnifierEnabled);
   };
 
   return (
@@ -41,10 +44,7 @@ export default function AccessibilityMenu({ setIsAccessibilityEnabled }) {
             {/* Magnifier Toggle */}
             <button
               className="flex items-center gap-1 sm:gap-2 p-2 rounded-lg text-orange-500 dark:text-orange-400 text-sm sm:text-base"
-              onClick={() => {
-                setIsMagnifierEnabled(!isMagnifierEnabled);
-                setIsAccessibilityEnabled(!isMagnifierEnabled);
-              }}
+              onClick={handleMagnifierToggle}
             >
               <ZoomIn size={16} className="flex-shrink-0" /> 
               <span>{isMagnifierEnabled ? "Disable Magnifier" : "Enable Magnifier"}</span>

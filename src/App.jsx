@@ -4,6 +4,7 @@ import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import ThemeProvider from "./components/ThemeProvider";
 import AccessibilityMenu from "./components/AccessibilityMenu.jsx";
+import AccessibilityConfirmation from "./components/AccessibilityConfirmation.jsx";
 import Home from "./components/Home.jsx";
 import About from "./components/About.jsx";
 import "./index.css";
@@ -97,12 +98,28 @@ const originalStories = [
 function App() {
   const [isAccessibilityEnabled, setIsAccessibilityEnabled] = useState(false);
   const [filteredStories, setFilteredStories] = useState(originalStories);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [pendingAccessibilityState, setPendingAccessibilityState] = useState(false);
+
+  const handleAccessibilityToggleRequest = (newState) => {
+    setPendingAccessibilityState(newState);
+    setShowConfirmation(true);
+  };
+
+  const handleConfirmAccessibility = () => {
+    setIsAccessibilityEnabled(pendingAccessibilityState);
+    setShowConfirmation(false);
+  };
+
+  const handleCancelAccessibility = () => {
+    setShowConfirmation(false);
+  };
 
   return (
     <ThemeProvider>
       <Header 
         isAccessibilityEnabled={isAccessibilityEnabled} 
-        setIsAccessibilityEnabled={setIsAccessibilityEnabled}
+        setIsAccessibilityEnabled={handleAccessibilityToggleRequest}
         setFilteredStories={setFilteredStories}
         originalStories={originalStories}
       />
@@ -115,7 +132,12 @@ function App() {
         } />
         <Route path="/about" element={<About isAccessibilityEnabled={isAccessibilityEnabled}/>} />
       </Routes>
-      <AccessibilityMenu setIsAccessibilityEnabled={setIsAccessibilityEnabled} />
+      <AccessibilityMenu setIsAccessibilityEnabled={handleAccessibilityToggleRequest} />
+      <AccessibilityConfirmation 
+        isOpen={showConfirmation}
+        onConfirm={handleConfirmAccessibility}
+        onCancel={handleCancelAccessibility}
+      />
       <Footer />
     </ThemeProvider>
   );
